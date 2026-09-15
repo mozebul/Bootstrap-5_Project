@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FoodCollections - Discover the Best Food & Restaurants</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-color: #ff4757;
+            --secondary-color: #2ed573;
+            --dark-color: #2f3542;
+        }
+
+        .bg-brand {
+            background-color: var(--primary-color) !important;
+        }
+
+        .btn-brand {
+            background-color: var(--primary-color);
+            color: #fff;
+            border: none;
+        }
+
+        .btn-brand:hover {
+            background-color: #e03b4b;
+            color: #fff;
+        }
+
+        .hero-section {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
+                        url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+            padding: 120px 0 100px 0;
+            color: #fff;
+        }
+
+        .card-img-top-wrapper {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card-img-top-wrapper img {
+            height: 220px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .food-card:hover .card-img-top-wrapper img {
+            transform: scale(1.05);
+        }
+
+        .badge-rating {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background-color: rgba(0, 0, 0, 0.75);
+            backdrop-filter: blur(4px);
+        }
+
+        .category-badge {
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .category-badge:hover, .category-badge.active {
+            background-color: var(--primary-color) !important;
+            color: #fff !important;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top shadow-sm">
+        <div class="container">
+            <a class="navbar-brand fw-bold fs-3 text-white" href="#">
+                <i class="bi bi-egg-fried text-danger me-2"></i>Food<span class="text-danger">Collections</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-lg-center">
+                    <li class="nav-item"><a class="nav-link active" href="#">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#collections">Collections</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#popular">Popular Spots</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#features">Features</a></li>
+                    <li class="nav-item ms-lg-3">
+                        <a href="#" class="btn btn-outline-light btn-sm rounded-pill px-3">Sign In</a>
+                    </li>
+                    <li class="nav-item ms-lg-2">
+                        <a href="#" class="btn btn-brand btn-sm rounded-pill px-3">Add Restaurant</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Search Section -->
+    <header class="hero-section text-center">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <h1 class="display-4 fw-bold mb-3">Discover the Best Food & Drinks</h1>
+                    <p class="lead mb-4">Explore top-rated restaurants, curated collections, and local culinary delights near you.</p>
+                    
+                    <!-- Search Box -->
+                    <div class="bg-white p-2 rounded-3 shadow-lg">
+                        <form class="row g-2 align-items-center">
+                            <div class="col-md-5">
+                                <div class="input-group">
+                                    <span class="input-group-text bg-transparent border-0"><i class="bi bi-geo-alt text-danger"></i></span>
+                                    <input type="text" class="form-control border-0" placeholder="Location or City">
+                                </div>
+                            </div>
+                            <div class="col-md-5 border-start-md">
+                                <div class="input-group">
+                                    <span class="input-group-text bg-transparent border-0"><i class="bi bi-search text-muted"></i></span>
+                                    <input type="text" class="form-control border-0" placeholder="Search dish, cuisine, or restaurant">
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <button type="submit" class="btn btn-brand w-100 py-2 rounded-2">Search</button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- Quick Filter Badges -->
+                    <div class="mt-4 d-flex justify-content-center flex-wrap gap-2">
+                        <span class="badge bg-light text-dark rounded-pill px-3 py-2 category-badge active">All Cuisines</span>
+                        <span class="badge bg-light text-dark rounded-pill px-3 py-2 category-badge">Italian</span>
+                        <span class="badge bg-light text-dark rounded-pill px-3 py-2 category-badge">Japanese & Sushi</span>
+                        <span class="badge bg-light text-dark rounded-pill px-3 py-2 category-badge">Burgers</span>
+                        <span class="badge bg-light text-dark rounded-pill px-3 py-2 category-badge">Vegan</span>
+                        <span class="badge bg-light text-dark rounded-pill px-3 py-2 category-badge">Desserts</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Curated Collections -->
+    <section id="collections" class="py-5 bg-light">
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-end mb-4">
+                <div>
+                    <h2 class="fw-bold mb-1">Handpicked Collections</h2>
+                    <p class="text-muted mb-0">Explore curated lists of top places based on trends</p>
+                </div>
+                <a href="#" class="text-danger text-decoration-none fw-semibold">View All <i class="bi bi-arrow-right"></i></a>
+            </div>
+
+            <div class="row g-4">
+                <div class="col-md-3 col-sm-6">
+                    <div class="card border-0 rounded-3 shadow-sm overflow-hidden text-white h-100 position-relative">
+                        <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=600&q=80" class="card-img h-100" style="object-fit: cover;" alt="Trending Spots">
+                        <div class="card-img-overlay d-flex flex-column justify-content-end bg-dark bg-opacity-50">
+                            <h5 class="card-title fw-bold mb-0">Trending This Week</h5>
+                            <p class="card-text small opacity-75">15 Places</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="card border-0 rounded-3 shadow-sm overflow-hidden text-white h-100 position-relative">
+                        <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=600&q=80" class="card-img h-100" style="object-fit: cover;" alt="Rooftop Dining">
+                        <div class="card-img-overlay d-flex flex-column justify-content-end bg-dark bg-opacity-50">
+                            <h5 class="card-title fw-bold mb-0">Rooftop Dining</h5>
+                            <p class="card-text small opacity-75">10 Places</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="card border-0 rounded-3 shadow-sm overflow-hidden text-white h-100 position-relative">
+                        <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=600&q=80" class="card-img h-100" style="object-fit: cover;" alt="Best Pizza Joints">
+                        <div class="card-img-overlay d-flex flex-column justify-content-end bg-dark bg-opacity-50">
+                            <h5 class="card-title fw-bold mb-0">Best Artisan Pizza</h5>
+                            <p class="card-text small opacity-75">22 Places</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="card border-0 rounded-3 shadow-sm overflow-hidden text-white h-100 position-relative">
+                        <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=600&q=80" class="card-img h-100" style="object-fit: cover;" alt="Cozy Cafes">
+                        <div class="card-img-overlay d-flex flex-column justify-content-end bg-dark bg-opacity-50">
+                            <h5 class="card-title fw-bold mb-0">Cozy Work Cafes</h5>
+                            <p class="card-text small opacity-75">18 Places</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Popular Spots Grid -->
+    <section id="popular" class="py-5">
+        <div class="container">
+            <h2 class="fw-bold mb-1">Popular Food Collections Near You</h2>
+            <p class="text-muted mb-4">Top-rated spots based on community reviews and rankings</p>
+
+            <div class="row g-4">
+                <!-- Card 1 -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="card h-100 border-0 shadow-sm food-card rounded-3 overflow-hidden">
+                        <div class="card-img-top-wrapper">
+                            <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=600&q=80" class="card-img-top" alt="Burger">
+                            <span class="badge badge-rating text-white rounded-pill px-3 py-2">
+                                <i class="bi bi-star-fill text-warning me-1"></i> 4.8
+                            </span>
+                        </div>
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <span class="badge bg-danger-subtle text-danger rounded-pill">Burger • Fast Food</span>
+                                <span class="text-muted small">$$ • 1.2 miles</span>
+                            </div>
+                            <h5 class="card-title fw-bold">The Craft Burger Lab</h5>
+                            <p class="card-text text-muted small">Famous for artisanal brioche burgers, truffle fries, and homemade sauces.</p>
+                        </div>
+                        <div class="card-footer bg-white border-0 pt-0 d-flex justify-content-between align-items-center">
+                            <span class="text-success small fw-semibold"><i class="bi bi-clock me-1"></i> Open Now</span>
+                            <a href="#" class="btn btn-outline-danger btn-sm rounded-pill">Details</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="card h-100 border-0 shadow-sm food-card rounded-3 overflow-hidden">
+                        <div class="card-img-top-wrapper">
+                            <img src="https://images.unsplash.com/photo-1579871494447-9811cf80d66c?auto=format&fit=crop&w=600&q=80" class="card-img-top" alt="Sushi">
+                            <span class="badge badge-rating text-white rounded-pill px-3 py-2">
+                                <i class="bi bi-star-fill text-warning me-1"></i> 4.9
+                            </span>
+                        </div>
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <span class="badge bg-success-subtle text-success rounded-pill">Japanese • Sushi</span>
+                                <span class="text-muted small">$$$ • 2.5 miles</span>
+                            </div>
+                            <h5 class="card-title fw-bold">Sakura Sushi & Omakase</h5>
+                            <p class="card-text text-muted small">Authentic Japanese dining experience with fresh daily seafood imports.</p>
+                        </div>
+                        <div class="card-footer bg-white border-0 pt-0 d-flex justify-content-between align-items-center">
+                            <span class="text-success small fw-semibold"><i class="bi bi-clock me-1"></i> Open Now</span>
+                            <a href="#" class="btn btn-outline-danger btn-sm rounded-pill">Details</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="card h-100 border-0 shadow-sm food-card rounded-3 overflow-hidden">
+                        <div class="card-img-top-wrapper">
+                            <img src="https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&w=600&q=80" class="card-img-top" alt="Dessert">
+                            <span class="badge badge-rating text-white rounded-pill px-3 py-2">
+                                <i class="bi bi-star-fill text-warning me-1"></i> 4.7
+                            </span>
+                        </div>
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <span class="badge bg-warning-subtle text-warning-emphasis rounded-pill">Desserts • Bakery</span>
+                                <span class="text-muted small">$ • 0.8 miles</span>
+                            </div>
+                            <h5 class="card-title fw-bold">Sweet Treats Bakery</h5>
+                            <p class="card-text text-muted small">Decadent pastries, gourmet waffles, and handcrafted espresso drinks.</p>
+                        </div>
+                        <div class="card-footer bg-white border-0 pt-0 d-flex justify-content-between align-items-center">
+                            <span class="text-danger small fw-semibold"><i class="bi bi-clock me-1"></i> Opens 4 PM</span>
+                            <a href="#" class="btn btn-outline-danger btn-sm rounded-pill">Details</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features / Why Choose Us Section -->
+    <section id="features" class="py-5 bg-light">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="fw-bold">Why FoodCollections?</h2>
+                <p class="text-muted">Connecting food lovers with unforgettable dining experiences</p>
+            </div>
+            <div class="row g-4 text-center">
+                <div class="col-md-4">
+                    <div class="p-4 bg-white rounded-3 shadow-sm h-100">
+                        <div class="fs-1 text-danger mb-3"><i class="bi bi-compass"></i></div>
+                        <h5 class="fw-bold">Curated Guides</h5>
+                        <p class="text-muted">Discover handpicked lists of local culinary hotspots created by food critics and community experts.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="p-4 bg-white rounded-3 shadow-sm h-100">
+                        <div class="fs-1 text-danger mb-3"><i class="bi bi-award"></i></div>
+                        <h5 class="fw-bold">Verified Reviews</h5>
+                        <p class="text-muted">Read authentic ratings and honest reviews from food enthusiasts who have actually visited.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="p-4 bg-white rounded-3 shadow-sm h-100">
+                        <div class="fs-1 text-danger mb-3"><i class="bi bi-bookmark-heart"></i></div>
+                        <h5 class="fw-bold">Personalized Lists</h5>
+                        <p class="text-muted">Save your favorite spots, create custom collections, and share your food journey with friends.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-light pt-5 pb-4">
+        <div class="container">
+            <div class="row g-4 mb-4">
+                <div class="col-lg-4 col-md-6">
+                    <a class="navbar-brand fw-bold fs-3 text-white d-block mb-3" href="#">
+                        <i class="bi bi-egg-fried text-danger me-2"></i>Food<span class="text-danger">Collections</span>
+                    </a>
+                    <p class="text-muted small">Your ultimate directory for discovering top restaurants, hidden gems, and delicious recipes across the city.</p>
+                    <div class="d-flex gap-3 fs-5">
+                        <a href="#" class="text-light"><i class="bi bi-facebook"></i></a>
+                        <a href="#" class="text-light"><i class="bi bi-instagram"></i></a>
+                        <a href="#" class="text-light"><i class="bi bi-twitter-x"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-6">
+                    <h6 class="fw-bold mb-3">About</h6>
+                    <ul class="list-unstyled text-muted small">
+                        <li class="mb-2"><a href="#" class="text-decoration-none text-muted">About Us</a></li>
+                        <li class="mb-2"><a href="#" class="text-decoration-none text-muted">Careers</a></li>
+                        <li class="mb-2"><a href="#" class="text-decoration-none text-muted">Press & Media</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-6">
+                    <h6 class="fw-bold mb-3">For Businesses</h6>
+                    <ul class="list-unstyled text-muted small">
+                        <li class="mb-2"><a href="#" class="text-decoration-none text-muted">Add Restaurant</a></li>
+                        <li class="mb-2"><a href="#" class="text-decoration-none text-muted">Business Claim</a></li>
+                        <li class="mb-2"><a href="#" class="text-decoration-none text-muted">Advertise</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <h6 class="fw-bold mb-3">Subscribe to Newsletter</h6>
+                    <p class="text-muted small">Get weekly updates on newly added collections and dining deals.</p>
+                    <div class="input-group">
+                        <input type="email" class="form-control" placeholder="Enter your email">
+                        <button class="btn btn-brand" type="button">Subscribe</button>
+                    </div>
+                </div>
+            </div>
+            <hr class="border-secondary">
+            <div class="row text-muted small">
+                <div class="col-md-6 text-center text-md-start">
+                    &copy; 2026 FoodCollections. All rights reserved.
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <a href="#" class="text-muted text-decoration-none me-3">Privacy Policy</a>
+                    <a href="#" class="text-muted text-decoration-none me-3">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5 JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/bootstrap.bundle.min.js"></script>
+</body>
+</html>
